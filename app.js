@@ -35,19 +35,45 @@
 // Object
 
 
-const user = {
-    name: 'Jack',
-    age: 23,
-    details() {
-        return `Hey i am ${user.name}`
+// const user = {
+//     name: 'Jack',
+//     age: 23,
+//     details() {
+//         return `Hey i am ${user.name}`
+//     }
+// }
+
+// console.log('old name : ', user.name);
+// user.name = 'akey';
+// console.log('New Name : ', user.name);
+
+// user['age'] = 90;
+// console.log("age : ", +user.age);
+
+// console.log('details : ', user.details());
+
+
+// fetch data
+
+const fetchData = async(req, res) => {
+    try {
+        // const response = await fetch('https://designer.mocky.io/', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        // console.log(response)
+        if (!response.ok) {
+            throw new Error('New Error Status Code : ', response.status);
+        }
+        const data = await response.json();
+        console.log(data.body)
+    } catch (error) {
+        console.error("catch block error : ", error.message)
     }
 }
 
-console.log('old name : ', user.name);
-user.name = 'akey';
-console.log('New Name : ', user.name);
-
-user['age'] = 90;
-console.log("age : ", +user.age);
-
-console.log('details : ', user.details());
+fetchData();
