@@ -88,7 +88,66 @@
 
 // Rest Operator
 
-export default function RestFunc(...number) {
-    return number.reduce((acc, n) => acc + n, 0);
-}
+// export default function RestFunc(...number) {
+//     return number.reduce((acc, n) => acc + n, 0);
+// }
 // console.log(RestFunc(5, 8, 6));
+
+
+
+const taskInput = document.getElementById('taskInput');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskList = document.getElementById('taskList');
+
+let tasks = [];
+
+// Load tasks from localStorage on page load
+window.onload = () => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+        tasks = JSON.parse(storedTasks);
+        renderTasks();
+    }
+};
+
+function renderTasks() {
+    taskList.innerHTML = '';
+    tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.textContent = task;
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.className = 'deleteBtn';
+        deleteBtn.onclick = () => deleteTask(index);
+        li.appendChild(deleteBtn);
+        taskList.appendChild(li);
+    });
+}
+
+function addTask() {
+    const task = taskInput.value.trim();
+    if (task) {
+        tasks.push(task);
+        taskInput.value = '';
+        saveTasks();
+        renderTasks();
+    }
+}
+
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    saveTasks();
+    renderTasks();
+}
+
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+addTaskBtn.addEventListener('click', addTask);
+
+taskInput.addEventListener('keypress', event => {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});

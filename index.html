@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+        
+        #taskInput {
+            padding: 0.5rem;
+            width: 250px;
+        }
+        
+        #addTaskBtn {
+            padding: 0.5rem;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            border-radius: 4px;
+        }
+        
+        .deleteBtn {
+            background-color: #ff4d4d;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            padding: 0 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
